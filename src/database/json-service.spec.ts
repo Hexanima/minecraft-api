@@ -1,5 +1,6 @@
 import { describe, expect, test } from "vitest";
 import { JsonFiles, JsonService } from "./json-service";
+import { PotionCost, PotionType } from "../entities/potion";
 
 describe("JsonService Test", async () => {
   test("Should return a JSON", async () => {
@@ -25,6 +26,20 @@ describe("JsonService Test", async () => {
         id: expect.any(Number),
         effect: expect.any(String),
         ingredients: expect.any(Array),
+        costs: expect.objectContaining({
+          base: expect.any(Number),
+          perDurationLevel: expect.any(Number),
+          perStrengthLevel: expect.any(Number),
+          toSplash: expect.any(Number),
+          toSplashAndDragon: expect.any(Number),
+        }),
+        duration: expect.any(Number),
+        type: expect.toBeOneOf([
+          "base",
+          "positive",
+          "negative",
+          "mixed",
+        ] satisfies PotionType[]),
       });
     }
   });
