@@ -5,6 +5,8 @@
   "author": "Nicolas Filippelli <nicolasfilippelli22@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/express": "^5.0.3",
+    "tsx": "^4.20.2",
     "typescript": "^5.8.3",
     "vitest": "^3.2.2"
   },
@@ -15,6 +17,7 @@
     "postmerge": "yarn install && yarn build && yarn test && ECHO \"Ready to launch! Use the following command: yarn start\" && ECHO \"Check the docs on the README.md\"",
     "build": "tsc -p tsconfig.json",
     "test": "vitest --run --clearScreen false",
-    "start": "node dist/src/app.js"
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/src/index.js"
   }
 }
