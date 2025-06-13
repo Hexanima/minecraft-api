@@ -13,5 +13,7 @@
   { "id": 12, "name": "Membrana de fantasma" },
   { "id": 13, "name": "Telaraña" },
   { "id": 14, "name": "Bloque de slime" },
-  { "id": 15, "name": "Piedra" }
+  { "id": 15, "name": "Piedra" },
+  { "id": 16, "name": "Ojo fermentado de araña" },
+  { "id": 17, "name": "Vara de brisa" }
 ]
