@@ -18,6 +18,10 @@ export type JsonFiles = keyof typeof JsonFiles;
 
 export interface JsonServiceFunctionalities {
   retrieve: (folder: JsonFiles) => Promise<JsonFileEntities[typeof folder][]>;
+  overwrite: (
+    folder: JsonFiles,
+    data: JsonFileEntities[typeof folder][]
+  ) => Promise<void | Error>;
 }
 
 export const JsonService: JsonServiceFunctionalities = {
@@ -27,5 +31,15 @@ export const JsonService: JsonServiceFunctionalities = {
       "utf-8"
     );
     return JSON.parse(file) satisfies JsonFileEntities[typeof folder][];
+  },
+  overwrite: async (
+    folder: JsonFiles,
+    data: JsonFileEntities[typeof folder][]
+  ) => {
+    fs.writeFileSync(
+      path.join(process.cwd(), "src", "database", `${folder}.json`),
+      JSON.stringify(data),
+      "utf-8"
+    );
   },
 };

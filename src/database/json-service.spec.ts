@@ -43,4 +43,26 @@ describe("JsonService Test", async () => {
       });
     }
   });
+  test("Should keep everything as is", async () => {
+    const ingredients = await JsonService.retrieve(JsonFiles.ingredients);
+    const potions = await JsonService.retrieve(JsonFiles.potions);
+
+    expect(potions).toBeInstanceOf(Array);
+    expect(potions).toHaveLength(20);
+
+    expect(ingredients).toBeInstanceOf(Array);
+    expect(ingredients).toHaveLength(17);
+
+    await JsonService.overwrite(JsonFiles.ingredients, ingredients);
+    await JsonService.overwrite(JsonFiles.potions, potions);
+    const ingredients2 = await JsonService.retrieve(JsonFiles.ingredients);
+    const potions2 = await JsonService.retrieve(JsonFiles.potions);
+
+
+    expect(ingredients2).toBeInstanceOf(Array);
+    expect(ingredients2).toHaveLength(17);
+
+    expect(potions2).toBeInstanceOf(Array);
+    expect(potions2).toHaveLength(20);
+  });
 });
